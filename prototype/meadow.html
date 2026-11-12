@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -118,27 +118,27 @@
 
 <aside id="panel">
   <header>
-    <div><b>Deskland</b><span>草地 · 原型</span></div>
-    <div><button class="ibtn" id="collapse" title="折叠">–</button></div>
+    <div><b>Deskland</b><span>Meadow · Prototype</span></div>
+    <div><button class="ibtn" id="collapse" title="Collapse">–</button></div>
   </header>
   <div class="body">
-    <div class="sec"><div class="t">桌面布局</div>
+    <div class="sec"><div class="t">Desktop layout</div>
       <div class="seg">
-        <button data-v="mine">仿你的桌面</button><button data-v="arranged">自动排列</button><button data-v="messy">杂乱</button><button data-v="minimal">极简</button>
+        <button data-v="mine">Match your desktop</button><button data-v="arranged">Auto-arrange</button><button data-v="messy">Messy</button><button data-v="minimal">Minimal</button>
       </div>
     </div>
     <div class="sec" id="sliders"></div>
     <div class="sec toggles">
-      <label><input type="checkbox" data-key="debug">显示云的边界</label>
-      <label><input type="checkbox" data-key="snap">对齐网格</label>
-      <label><input type="checkbox" data-key="cap30">限帧 30fps</label>
+      <label><input type="checkbox" data-key="debug">Show cloud edges</label>
+      <label><input type="checkbox" data-key="snap">Snap to grid</label>
+      <label><input type="checkbox" data-key="cap30">Cap at 30fps</label>
     </div>
     <div class="sec btns">
-      <button id="btnAdd">＋ 新建文件</button>
-      <button id="btnSeed">换一种云</button>
+      <button id="btnAdd">＋ New file</button>
+      <button id="btnSeed">Change cloud</button>
     </div>
     <div id="stats"></div>
-    <div class="hint">拖动图标，松手后云会跟着移动<br>Del 删除 · H 隐藏面板</div>
+    <div class="hint">Drag icons; the clouds follow when you release<br>Del = delete · H = hide panel</div>
   </div>
 </aside>
 <div id="nogl">当前浏览器不支持 WebGL2，无法运行原型。</div>
@@ -165,9 +165,9 @@ const P = {
 const DEFAULTS = Object.assign({}, P);
 const DISPLAY_KEYS = ['showBoy', 'showCat', 'adaptive'];
 const SLIDERS = [
-  { key: 'sigma',  label: '云团大小', min: 40,  max: 200, step: 1,    fmt: v => v + ' px', act: 'field' },
-  { key: 'cover',  label: '草地上的云', min: 0,   max: 1,   step: 0.01, fmt: v => Math.round(v * 100) + '%' },
-  { key: 'flow',   label: '流动速度', min: 0,   max: 3,   step: 0.05, fmt: v => '×' + v.toFixed(2) },
+  { key: 'sigma',  label: 'Cloud cluster size', min: 40,  max: 200, step: 1,    fmt: v => v + ' px', act: 'field' },
+  { key: 'cover',  label: 'Meadow clouds', min: 0,   max: 1,   step: 0.01, fmt: v => Math.round(v * 100) + '%' },
+  { key: 'flow',   label: 'Flow speed', min: 0,   max: 3,   step: 0.05, fmt: v => '×' + v.toFixed(2) },
 ];
 
 /* ======================================================================

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -385,7 +385,7 @@ const host = window.chrome && window.chrome.webview;
 const send = m => { if (host) host.postMessage(JSON.stringify(m)); };
 
 const state = { registry0: null, registry: null, theme: 'beach', params: {}, screen: null, icons: null,
-  langSetting: 'auto', langSys: 'zh-CN', autostartWarn: false, autostartSw: '',
+  langSetting: 'auto', langSys: 'en', autostartWarn: false, autostartSw: '',
   updateVersion: '', updateStatus: '', updateProgress: -1, updateError: '' };
 const $ = id => document.getElementById(id);
 const frame = $('preview');
@@ -394,7 +394,7 @@ const frame = $('preview');
 // 增加语言时同步宿主 I18n.Supported 与体验版导出的语言列表。
 const LANGS = { 'en': 'English', 'zh-CN': '简体中文' };
 const I18N = {};
-let lang = 'zh-CN';
+let lang = 'en';
 const loadLang = code => I18N[code] ? Promise.resolve() :
   fetch('i18n/' + code + '.json').then(r => r.json()).then(j => { I18N[code] = j; }).catch(() => { I18N[code] = {}; });
 // 一句界面文字：当前语言 → 英文 → 简体中文；{名字} 换成 vars 里的值
@@ -415,7 +415,7 @@ function connectionErrorText(code) {
 function browserLang() {
   for (const l of navigator.languages || [navigator.language]) {
     const x = (l || '').toLowerCase();
-    if (x.startsWith('zh')) return 'zh-CN';
+    if (x.startsWith('zh')) return 'en';
     if (LANGS[x.slice(0, 2)]) return x.slice(0, 2);
   }
   return 'en';
@@ -785,7 +785,7 @@ $('shareReveal').addEventListener('click', () => send({ t: 'revealShare' }));
 function onHost(m) {
   if (m.t === 'init') {
     state.langSetting = m.lang || 'auto';
-    state.langSys = m.langSys || 'zh-CN';
+    state.langSys = m.langSys || 'en';
     setLang(m.langEff || state.langSys).then(() => {        // 先按界面语言把文字表读进来，再画界面
       state.theme = themeById(m.theme) && themeById(m.theme).status === 'ready' ? m.theme : 'beach';
       state.params = m.params || {};
